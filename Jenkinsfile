@@ -16,19 +16,19 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 // Specify the shell directly
-                sh(script: 'flutter pub get', shell: '/bin/bash')
+                sh 'flutter test'
             }
         }
 
         stage('Run Tests') {
             steps {
-                sh(script: 'flutter test', shell: '/bin/bash')
+                sh 'flutter test'
             }
         }
 
         stage('Build App') {
             steps {
-                sh(script: 'flutter build apk', shell: '/bin/bash') // For Android
+                sh 'flutter test'
             }
         }
     }
