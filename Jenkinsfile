@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://your-repo-url.git' // Replace with your repository URL
+                git 'https://github.com/haridev1004/cicd_pipeline_testing.git' // Replace with your repository URL
             }
         }
 
