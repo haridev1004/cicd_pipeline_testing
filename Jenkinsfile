@@ -1,23 +1,44 @@
 pipeline {
     agent any 
+
     environment {
-        PATH = "$PATH:/Users/hari/Library/Flutter/bin"
+        FLUTTER_HOME = '/Users/hari/Library/Flutter'
+        PATH = "${FLUTTER_HOME}/bin:${env.PATH}"
     }
 
-      stages {
-        stage('Setup') {
+    stages {
+        stage('Checkout') {
             steps {
-                print "${env.PATH}"
-            }    
-        }
-        
-        stage('Build') {
-            steps {
-                sh "flutter doctor -v"
+                git 'https://your-repo-url.git' // Replace with your repository URL
             }
-        }        
-    
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                // Specify the shell directly
+                sh(script: 'flutter pub get', shell: '/bin/bash')
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                sh(script: 'flutter test', shell: '/bin/bash')
+            }
+        }
+
+        stage('Build App') {
+            steps {
+                sh(script: 'flutter build apk', shell: '/bin/bash') // For Android
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Build completed successfully!'
+        }
+        failure {
+            echo 'Build failed!'
+        }
     }
 }
-
- 
