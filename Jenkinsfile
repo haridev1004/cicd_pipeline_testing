@@ -4,7 +4,6 @@ pipeline {
         PATH = "$PATH:/Users/hari/Library/Flutter/bin"
     }
 
-    stages { 
       stages {
         stage('Setup') {
             steps {
@@ -17,7 +16,7 @@ pipeline {
                 sh "flutter doctor -v"
             }
         }        
-    }
+    
     }
 }
 
