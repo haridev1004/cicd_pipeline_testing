@@ -19,13 +19,14 @@ pipeline {
             steps {
                 sh 'flutter test'
             }
+            
         }
 
-        // stage('Build'){
-        //     steps{
-        //         sh 'flutter build appbundle'
-        //     }
-        // }
+        stage('Build'){
+            steps{
+                sh 'flutter build appbundle --release'
+            }
+        }
         
         stage("Publish"){
             steps{
